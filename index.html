@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI in Education: Parent Pulse Survey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles for radio buttons */
+        .custom-radio-label {
+            transition: all 0.2s ease-in-out;
+        }
+        .custom-radio-label:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        input[type="radio"]:checked + .custom-radio-label {
+            background-color: #3b82f6; /* bg-blue-500 */
+            color: white;
+            border-color: #2563eb; /* border-blue-600 */
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+        #result-card {
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 flex items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-2xl mx-auto">
+        <div id="survey-container" class="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-2xl shadow-xl">
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">AI in Education: Parent Pulse</h1>
+                <p class="mt-2 text-slate-600 dark:text-slate-400">Answer a few questions to see your AI Parent Profile.</p>
+            </div>
+
+            <!-- Form -->
+            <form id="ai-survey-form">
+                <!-- Question 1: Familiarity -->
+                <div class="mb-8">
+                    <label class="block text-lg font-semibold mb-3 text-slate-700 dark:text-slate-300">1. How familiar are you with AI tools like ChatGPT or Google Gemini?</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <input type="radio" name="familiarity" id="fam-very" value="Very" class="sr-only" required>
+                        <label for="fam-very" class="custom-radio-label cursor-pointer text-center p-4 border border-slate-300 dark:border-slate-600 rounded-lg font-medium">Very Familiar</label>
+                        
+                        <input type="radio" name="familiarity" id="fam-somewhat" value="Somewhat" class="sr-only">
+                        <label for="fam-somewhat" class="custom-radio-label cursor-pointer text-center p-4 border border-slate-300 dark:border-slate-600 rounded-lg font-medium">Somewhat Familiar</label>
+                        
+                        <input type="radio" name="familiarity" id="fam-not" value="Not Really" class="sr-only">
+                        <label for="fam-not" class="custom-radio-label cursor-pointer text-center p-4 border border-slate-300 dark:border-slate-600 rounded-lg font-medium">Not Really</label>
+                    </div>
+                </div>
+
+                <!-- Question 2: Feeling -->
+                <div class="mb-8">
+                    <label class="block text-lg font-semibold mb-3 text-slate-700 dark:text-slate-300">2. What is your primary feeling about AI in your child's school?</label>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <input type="radio" name="feeling" id="feel-optimistic" value="Optimistic" class="sr-only" required>
+                        <label for="feel-optimistic" class="custom-radio-label cursor-pointer text-center p-4 border border-slate-300 dark:border-slate-600 rounded-lg font-medium">Optimistic</label>
+                        
+                        <input type="radio" name="feeling" id="feel-curious" value="Curious" class="sr-only">
+                        <label for="feel-curious" class="custom-radio-label cursor-pointer text-center p-4 border border-slate-300 dark:border-slate-600 rounded-lg font-medium">Curious</label>
+                        
+                        <input type="radio" name="feeling" id="feel-concerned" value="Concerned" class="sr-only">
+                        <label for="feel-concerned" class="custom-radio-label cursor-pointer text-center p-4 border border-slate-300 dark:border-slate-600 rounded-lg font-medium">Concerned</label>
+
+                        <input type="radio" name="feeling" id="feel-unsure" value="Unsure" class="sr-only">
+                        <label for="feel-unsure" class="custom-radio-label cursor-pointer text-center p-4 border border-slate-300 dark:border-slate-600 rounded-lg font-medium">Unsure</label>
+                    </div>
+                </div>
+
+                <!-- Question 3: Focus -->
+                <div class="mb-8">
+                    <label class="block text-lg font-semibold mb-3 text-slate-700 dark:text-slate-300">3. What should schools prioritize regarding AI?</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <input type="radio" name="focus" id="focus-innovation" value="Innovation" class="sr-only" required>
+                        <label for="focus-innovation" class="custom-radio-label cursor-pointer text-center p-4 border border-slate-300 dark:border-slate-600 rounded-lg font-medium">Innovation & Skills</label>
+                        
+                        <input type="radio" name="focus" id="focus-safety" value="Safety" class="sr-only">
+                        <label for="focus-safety" class="custom-radio-label cursor-pointer text-center p-4 border border-slate-300 dark:border-slate-600 rounded-lg font-medium">Safety & Ethics</label>
+                        
+                        <input type="radio" name="focus" id="focus-equity" value="Equity" class="sr-only">
+                        <label for="focus-equity" class="custom-radio-label cursor-pointer text-center p-4 border border-slate-300 dark:border-slate-600 rounded-lg font-medium">Equity & Access</label>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button type="submit" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800">
+                        Generate My AI Profile
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Result Card (Initially Hidden) -->
+        <div id="result-card" class="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-2xl shadow-xl mt-8 opacity-0 transform scale-95" style="display: none;">
+             <div id="loading-spinner" class="text-center" style="display: none;">
+                <svg class="animate-spin h-8 w-8 text-blue-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <p class="mt-2 text-slate-600 dark:text-slate-400">Analyzing your perspective...</p>
+            </div>
+            <div id="result-content" style="display: none;">
+                <h2 class="text-2xl font-bold text-center text-blue-600 dark:text-blue-400 mb-4" id="profile-title"></h2>
+                <p class="text-slate-600 dark:text-slate-300 text-center text-lg" id="profile-description"></p>
+                <div class="text-center mt-8">
+                    <button id="reset-button" class="w-full sm:w-auto bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-bold py-2 px-6 rounded-lg transition">
+                        Start Over
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('ai-survey-form');
+            const surveyContainer = document.getElementById('survey-container');
+            const resultCard = document.getElementById('result-card');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const resultContent = document.getElementById('result-content');
+            const profileTitle = document.getElementById('profile-title');
+            const profileDescription = document.getElementById('profile-description');
+            const resetButton = document.getElementById('reset-button');
+
+            // --- "AI" Logic: Generates a profile based on user selections ---
+            // This simulates AI analysis by mapping inputs to pre-defined outputs.
+            // It's a great way to demonstrate the concept without a real AI call.
+            function getAIProfile(feeling, focus) {
+                // Profile definitions
+                const profiles = {
+                    'Optimistic-Innovation': {
+                        title: 'The Frontier Explorer',
+                        desc: "You see the incredible potential of AI to create new learning opportunities and prepare students for the future. Your focus is on harnessing these tools for growth and innovation."
+                    },
+                    'Optimistic-Safety': {
+                        title: 'The Positive Guardian',
+                        desc: "You're excited about AI's benefits but believe that progress must be built on a strong foundation of safety and ethics. Your balanced view is key to responsible implementation."
+                    },
+                    'Optimistic-Equity': {
+                        title: 'The Inclusive Visionary',
+                        desc: "You believe AI can be a powerful force for good, and you want to ensure its amazing benefits are accessible to every single student, regardless of their background."
+                    },
+                    'Curious-Innovation': {
+                        title: 'The Eager Investigator',
+                        desc: "You're open-minded and ready to learn how new AI tools can change the classroom for the better. Your curiosity drives the exploration of what's possible."
+                    },
+                    'Curious-Safety': {
+                        title: 'The Thoughtful Analyst',
+                        desc: "You're exploring the world of AI with an open yet careful mindset. You want to understand both the potential and the pitfalls, focusing on how to use it ethically."
+                    },
+                    'Curious-Equity': {
+                        title: 'The Community Advocate',
+                        desc: "You're intrigued by AI and want to understand how it can be used to close gaps and create fair opportunities for all students in the community."
+                    },
+                    'Concerned-Innovation': {
+                        title: 'The Cautious Innovator',
+                        desc: "You recognize that progress is happening, but you have valid concerns about moving too fast. Your perspective helps ensure that innovation doesn't outpace thoughtful planning."
+                    },
+                    'Concerned-Safety': {
+                        title: 'The Prudent Protector',
+                        desc: "Your primary focus is on the well-being of students. You believe that before we embrace AI, we must have strong policies and clear ethical guidelines in place to protect them."
+                    },
+                    'Concerned-Equity': {
+                        title: 'The Fairness Watchdog',
+                        desc: "You are rightly concerned that new technologies could widen existing gaps. Your voice is crucial for ensuring that AI is implemented in a way that is fair and equitable for all."
+                    },
+                    // Default profiles for "Unsure" or other combinations
+                    'default': {
+                        title: 'The Open-Minded Learner',
+                        desc: "You're at the beginning of your AI journey and are here to gather information. Your willingness to learn is the most important first step in navigating this new landscape."
+                    }
+                };
+                
+                const key = `${feeling}-${focus}`;
+                // Return the specific profile or the default one if no match is found
+                return profiles[key] || profiles['default'];
+            }
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Get selected values
+                const formData = new FormData(form);
+                const feeling = formData.get('feeling');
+                const focus = formData.get('focus');
+
+                // Hide survey and show loading spinner
+                surveyContainer.style.display = 'none';
+                resultCard.style.display = 'block';
+                loadingSpinner.style.display = 'block';
+                resultContent.style.display = 'none';
+                
+                // Animate the result card into view
+                setTimeout(() => {
+                    resultCard.style.opacity = '1';
+                    resultCard.style.transform = 'scale(1)';
+                }, 10);
+
+
+                // Simulate AI processing time
+                setTimeout(() => {
+                    const profile = getAIProfile(feeling, focus);
+                    
+                    // Populate and show the result
+                    profileTitle.textContent = profile.title;
+                    profileDescription.textContent = profile.desc;
+                    
+                    loadingSpinner.style.display = 'none';
+                    resultContent.style.display = 'block';
+                }, 1500); // 1.5 second delay
+            });
+            
+            resetButton.addEventListener('click', function() {
+                // Reset form
+                form.reset();
+
+                // Hide result card and show survey
+                resultCard.style.opacity = '0';
+                resultCard.style.transform = 'scale(0.95)';
+                
+                setTimeout(() => {
+                    resultCard.style.display = 'none';
+                    surveyContainer.style.display = 'block';
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
